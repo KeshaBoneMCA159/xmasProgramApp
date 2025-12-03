@@ -14,10 +14,18 @@ CREATE TABLE format (
 
 CREATE TABLE producer (
     producer_id SMALLINT UNSIGNED AUTO_INCREMENT NOT NULL,
-    producer VARCHAR (60),
+    first_name VARCHAR(30),
+    last_name VARCHAR(30),
 date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 last_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 CONSTRAINT pk_producer PRIMARY KEY producer (producer_id)
+);
+
+CREATE TABLE program_producer (
+    program_id INT UNSIGNED NOT NULL, 
+    producer_id SMALLINT UNSIGNED NOT NULL,
+    PRIMARY KEY (program_id, producer_id),
+    FOREIGN KEY (producer_id) REFERENCES producer(producer_id)
 );
 
 
@@ -37,6 +45,13 @@ CREATE TABLE streaming_platform (
 date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 last_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 CONSTRAINT pk_streaming PRIMARY KEY(streaming_platform_id)
+);
+
+CREATE TABLE program_streaming_platform (
+    program_id INT UNSIGNED NOT NULL, 
+    streaming_platform_id TINYINT UNSIGNED NOT NULL,
+    PRIMARY KEY (program_id, streaming_platform_id),
+    FOREIGN KEY (streaming_platform_id) REFERENCES streaming_platform(streaming_platform_id)
 );
 
 
@@ -79,9 +94,9 @@ CONSTRAINT fk_str_prog FOREIGN KEY(streaming_platform_id) REFERENCES streaming_p
 
 
 CREATE TABLE program_to_actor (
-    program_id BIGINT UNSIGNED NOT NULL,
-    actor_id MEDIUMINT UNSIGNED NOT NULL,
-   CONSTRAINT fk_prog_act FOREIGN KEY (program_id) REFERENCES program (program_id),
+program_id BIGINT UNSIGNED NOT NULL,
+actor_id MEDIUMINT UNSIGNED NOT NULL,
+CONSTRAINT fk_prog_act FOREIGN KEY (program_id) REFERENCES program (program_id),
 CONSTRAINT fk_act_prog FOREIGN KEY(actor_id) REFERENCES actor (actor_id)
 );
 
@@ -105,3 +120,14 @@ CONSTRAINT fk_producer_prog FOREIGN KEY(producer_id) REFERENCES producer (produc
 -- ALTERATIONS
 ALTER TABLE genre
 MODIFY COLUMN CONSTRAINT pk_genre PRIMARY KEY (genre_id);
+
+ALTER TABLE program
+ADD COLUMN CONSTRAINT fk_streaming_platform FOREIGN KEY (streaming_platform_id) REFERENCES streaming_platform (streaming_platform_id);
+
+CREATE TABLE streaming_platform (
+    streaming_platform_id TINYINT UNSIGNED AUTO_INCREMENT NOT NULL,
+    streaming_platform VARCHAR (30),
+date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+last_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+CONSTRAINT pk_streaming PRIMARY KEY(streaming_platform_id)
+);
