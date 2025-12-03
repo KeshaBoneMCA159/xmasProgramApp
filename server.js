@@ -27,4 +27,4 @@ server.use(express.urlencoded({ extended: true}))
 server.use('/', router) // Step 4b import router
 
 // Step 1a (1st sanity check) => Check terminal
-server.listen(PORT, ()=> console.log(`It's the most wonderful time of the year on port: ${PORT}`))
+server.listen(PORT, ()=> console.log(`It's the most wonderful time of the year`))

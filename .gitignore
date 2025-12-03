@@ -1,2 +1,3 @@
-nodule_modules/
+nodule_module/
 *-lock.json
+config/
