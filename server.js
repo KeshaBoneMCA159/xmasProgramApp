@@ -24,6 +24,9 @@ server.use(helmet.contentSecurityPolicy({
 server.use(cors())
 server.use(express.json())
 server.use(express.urlencoded({ extended: true}))
+
+server.set('view engine', 'ejs')
+
 server.use('/', router) // Step 4b import router
 
 // Step 1a (1st sanity check) => Check terminal

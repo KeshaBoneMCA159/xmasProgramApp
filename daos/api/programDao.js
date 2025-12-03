@@ -2,4 +2,4 @@
 const con = require('../../config/dbconfig')
 const { queryAction } = require('../../helpers/queryAction')
 
-module.exports = progrramDao
+module.exports = programDao
