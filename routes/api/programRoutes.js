@@ -5,9 +5,13 @@ const router = require('express')
 //sanity check
 const { programDao: dao } = require('../../daos/dao')
 
-//http://localhost:3005/api/program
 router.get('/', (req, res)=> {
-    dao.findAll(req, res, dao.table)
+    dao.findProgramInfo(res, dao.table)
+})
+
+// Step 14 create movie by id route http://localhost:3000/api/get_movie/:id => sanity check
+router.get('/get_movie/:id', (req, res) => {
+    dao.findById(res, dao.table, req.params.id)
 })
 
 module.exports = router

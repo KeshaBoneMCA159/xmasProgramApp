@@ -19,10 +19,10 @@ router.get('/api', (req, res) => {
         'Programs': `http://localhost:${PORT}/api/program`
         //'Actors': `http://localhost:${PORT}/api/actor`
     })
-
-    router.use('/api/program', require('./api/programRoutes'))
-
+    
 })
+
+router.use('/api/program', require('./api/programRoutes'))
 
     router.use((req, res, next)=> {
         res.status(404)
