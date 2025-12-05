@@ -1,5 +1,6 @@
 // Step 8 connect to config database
 const con = require('../../config/dbconfig')
+const { queryAction} = require('../../helpers/queryAction')
 
 const daoCommon = {
        // Step 9 create methods that'll query the database
@@ -46,6 +47,15 @@ const daoCommon = {
             }
         )
     },
+
+   sort: (res, table, sorter)=> {
+        con.execute(
+            `SELECT * FROM ${table} ORDER BY ${sorter};`,
+            (error, rows)=> {
+                queryAction(res, error, rows, table) 
+            }
+        )
+    }
 }
 
 module.exports = daoCommon // <= the rest of step 8

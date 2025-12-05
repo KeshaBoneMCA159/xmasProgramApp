@@ -9,8 +9,7 @@ const programDao = {
     findProgramInfo: (res, table)=> {
 
         const sql = `SELECT p.program_id, p.title, p.runtime, p.yr_released, p.frmt_id, p.pd_id, p.img_url, p.descr, p.sp_id,
-    
-    -- Use CONCAT() to add the space between first and last names
+
     GROUP_CONCAT(DISTINCT CONCAT(a.fName, ' ', a.lName) SEPARATOR ', ') AS actors,
     GROUP_CONCAT(DISTINCT CONCAT(d.fName, ' ', d.lName) SEPARATOR ', ') AS directors,
     GROUP_CONCAT(DISTINCT CONCAT(pd.fName, ' ', pd.lName) SEPARATOR ', ') AS producers,
@@ -49,6 +48,28 @@ ORDER BY p.program_id;`
             }
         )
     },
+
+    findProgramById: function(res, id) {
+       
+        const sql = `SELECT * FROM program WHERE program_id = ?`; 
+        con.query(
+            sql,
+            [id],
+            (error, rows) => {
+                queryAction(res, error, rows);
+            }
+        );
+    },
+    
+     findProgramsByRating: (res, table, ratingString)=> {
+        con.query(
+            `SELECT * FROM ?? WHERE pgr_rating = ?`,
+            [table, ratingString],
+            (error, rows)=> {
+                queryAction(res, error, rows)
+            }
+        )
+    }
 }
 
 module.exports = programDao
