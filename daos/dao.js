@@ -6,8 +6,14 @@ const programDao = {
     ...require('./api/programDao') 
 }
 
+const actorDao = {
+    ...daoCommon,
+    ...require('./api/actorDao') 
+}
+
 
 
 module.exports = {
-    programDao
+    programDao,
+    actorDao
 }

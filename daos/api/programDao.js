@@ -56,15 +56,15 @@ ORDER BY p.program_id;`
             sql,
             [id],
             (error, rows) => {
-                queryAction(res, error, rows);
+                queryAction(res, error, rows)
             }
-        );
+        )
     },
     
-     findByRating: (res, table, ratingString)=> {
+     findByRating: (res, ratingString)=> {
         con.execute(
-            `SELECT * FROM ?? WHERE pgr_rting = ?`,
-            [table, ratingString],
+            `SELECT * FROM program WHERE pgr_rting = ?`,
+            [ratingString],
             (error, rows)=> {
                 queryAction(res, error, rows)
             }

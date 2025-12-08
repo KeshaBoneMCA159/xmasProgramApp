@@ -29,7 +29,7 @@ const daoCommon = {
         )
     },
 
-    findByProgramId: (res, table, id)=> {
+    findById: (res, table, id)=> {
         con.execute(
             `SELECT * FROM ${table} WHERE ${table}_id = ${id};`,
             (error, rows)=> {
@@ -55,7 +55,46 @@ const daoCommon = {
                 queryAction(res, error, rows, table) 
             }
         )
+    },
+    countAll: (res, table)=> {
+        con.execute(
+            `SELECT COUNT(*) AS total FROM ${table};`,
+            (error, rows)=> {
+                queryAction(res, error, rows, table) 
+            }
+        )
+    },
+
+    search: (res, table, column, keyword)=> {
+        con.execute(
+            `SELECT * FROM ${table} WHERE ${column} LIKE ?;`,
+            [`%${keyword}%`],   
+            (error, rows)=> {
+                queryAction(res, error, rows, table) 
+            }
+        )
+    },
+
+    create: (req, res, table, insertObj)=> {
+        con.execute(
+            `INSERT INTO ${table} SET ?;`,
+            [insertObj],
+            (error, rows)=> {
+                queryAction(res, error, rows, table) 
+            }
+        )
+    },
+
+    update: (req, res, table, updateObj, id)=> {
+        con.execute(
+            `UPDATE ${table} SET ? WHERE ${table}_id = ?;`,
+            [updateObj, id],
+            (error, rows)=> {
+                queryAction(res, error, rows, table) 
+            }
+        )
     }
+
 }
 
 module.exports = daoCommon // <= the rest of step 8

@@ -39,7 +39,13 @@ router.get('/program/:id', (req, res, next) => {
     )
 })
 
-const endpoints = ['program' /* add actor, director, etc. here later */];
+const endpoints = [
+    'program',
+    'actor',
+    //'director',
+    //'producer',
+    
+];
 
 endpoints.forEach(endpoint => {
     router.use(`/api/${endpoint}`, require(`./api/${endpoint}Routes`));
