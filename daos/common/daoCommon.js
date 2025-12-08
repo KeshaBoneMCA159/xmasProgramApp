@@ -29,7 +29,7 @@ const daoCommon = {
         )
     },
 
-    findById: (res, table, id)=> {
+    findByProgramId: (res, table, id)=> {
         con.execute(
             `SELECT * FROM ${table} WHERE ${table}_id = ${id};`,
             (error, rows)=> {

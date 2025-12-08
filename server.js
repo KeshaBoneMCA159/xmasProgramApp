@@ -2,7 +2,6 @@
 const express = require('express')
 const server = express()
 const router = require('./routes/router') // Step 4a connect to my router
-
 const PORT = process.env.PORT || 3005
 
 //1b Install and handle security 

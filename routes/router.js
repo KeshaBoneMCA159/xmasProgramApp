@@ -1,9 +1,14 @@
 // Step 5 export router
 const express = require('express')
 const router = express.Router()
+const axios = require('axios')
 const PORT = process.env.PORT || 3005
 
-// Home Page => http://localhost:3000
+router.use(express.static('public'))
+
+// --- DISPLAY ROUTES ---
+
+// Homepage Route (localhost:3005)
 router.get('/', (req, res)=> {
     res.render('pages/home', {
         title: 'xmas-program-app home',
@@ -11,23 +16,39 @@ router.get('/', (req, res)=> {
     })
 })
 
-// Step 6 create root route
-http://localhost:3005/api
-router.get('/api', (req, res) => {
-    //res.send('xmas api') santity check
-     res.json({
-        'Programs': `http://localhost:${PORT}/api/program`
-        //'Actors': `http://localhost:${PORT}/api/actor`
-    })
-    
+// Single Program Display Page
+router.get('/program/:id', (req, res, next) => {
+    const id = req.params.id
+    const url = `http://localhost:${PORT}/api/program/${id}`
+
+    axios.get(url)
+    .then(
+        // Success Handler
+        (resp) => {
+            const program = resp.data
+            res.render('pages/program', {
+                title: `Xmas Program: ${program.title}`,
+                name: 'Xmas Program Details',
+                program: program
+            })
+        },
+        (error) => {
+        
+            next(error); 
+        }
+    )
 })
 
-router.use('/api/program', require('./api/programRoutes'))
+const endpoints = ['program' /* add actor, director, etc. here later */];
 
-    router.use((req, res, next)=> {
-        res.status(404)
-        .send('<h1>🎄❄️🎄 Error: Grandma got ran over by a reindeer👵🏽🦌🛷✨</h1>')
-    
-    })
+endpoints.forEach(endpoint => {
+    router.use(`/api/${endpoint}`, require(`./api/${endpoint}Routes`));
+})
 
-module.exports = router
+//404 page
+router.use((req, res, next)=> {
+    res.status(404)
+    .send('<h1>🎄❄️🎄 Error: Grandma got ran over by a reindeer👵🏽🦌🛷✨</h1>')
+})
+
+module.exports = router;

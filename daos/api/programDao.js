@@ -41,7 +41,7 @@ GROUP BY p.program_id,
     p.pgr_rting
 ORDER BY p.program_id;`
 
-         con.query(
+         con.execute(
             sql,
             (error, rows)=> {
                 queryAction(res, error, rows,)
@@ -49,10 +49,10 @@ ORDER BY p.program_id;`
         )
     },
 
-    findProgramById: function(res, id) {
+    findById: function(res, id) {
        
         const sql = `SELECT * FROM program WHERE program_id = ?`; 
-        con.query(
+        con.execute(
             sql,
             [id],
             (error, rows) => {
@@ -61,9 +61,9 @@ ORDER BY p.program_id;`
         );
     },
     
-     findProgramsByRating: (res, table, ratingString)=> {
-        con.query(
-            `SELECT * FROM ?? WHERE pgr_rating = ?`,
+     findByRating: (res, table, ratingString)=> {
+        con.execute(
+            `SELECT * FROM ?? WHERE pgr_rting = ?`,
             [table, ratingString],
             (error, rows)=> {
                 queryAction(res, error, rows)
