@@ -5,7 +5,7 @@ const { queryAction } = require('../../helpers/queryAction')
 const programDao = {
     // Step 11 create methods specific to the program table
      table: 'program',
-    // Step 24 write query methods specifically for the movie table
+    // Step 24 write query methods specifically for the program table
     findProgramInfo: (res, table)=> {
 
         const sql = `SELECT p.program_id, p.title, p.runtime, p.yr_released, p.frmt_id, p.pd_id, p.img_url, p.descr, p.sp_id,

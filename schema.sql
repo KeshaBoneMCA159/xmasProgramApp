@@ -21,14 +21,6 @@ last_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 CONSTRAINT pk_producer PRIMARY KEY producer (producer_id)
 );
 
-CREATE TABLE program_producer (
-    program_id INT UNSIGNED NOT NULL, 
-    producer_id SMALLINT UNSIGNED NOT NULL,
-    PRIMARY KEY (program_id, producer_id),
-    FOREIGN KEY (producer_id) REFERENCES producer(producer_id)
-);
-
-
 CREATE TABLE director (
     director_id SMALLINT UNSIGNED AUTO_INCREMENT NOT NULL,
     first_name VARCHAR(30),
@@ -46,14 +38,6 @@ date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 last_update TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 CONSTRAINT pk_streaming PRIMARY KEY(streaming_platform_id)
 );
-
-CREATE TABLE program_streaming_platform (
-    program_id INT UNSIGNED NOT NULL, 
-    streaming_platform_id TINYINT UNSIGNED NOT NULL,
-    PRIMARY KEY (program_id, streaming_platform_id),
-    FOREIGN KEY (streaming_platform_id) REFERENCES streaming_platform(streaming_platform_id)
-);
-
 
  CREATE TABLE actor(
     actor_id MEDIUMINT UNSIGNED AUTO_INCREMENT NOT NULL,

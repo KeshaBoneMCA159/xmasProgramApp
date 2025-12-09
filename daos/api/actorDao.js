@@ -27,11 +27,11 @@ const actorDao = {
 
     countProgramsByActor: (res, id) => {
         const sql = `
-             SELECT COUNT(pta.program_id) AS program_count, a.fname, a.lname
+             SELECT COUNT(pta.program_id) AS program_count, a.fName, a.lName
             FROM actor a
             JOIN program_to_actor pta ON a.actor_id = pta.actor_id
             WHERE a.actor_id = ?
-            GROUP BY a.actor_id, a.fname, a.lname`;
+            GROUP BY a.actor_id, a.fName, a.lName`;
 
         con.execute(
             sql,

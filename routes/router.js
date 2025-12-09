@@ -42,9 +42,9 @@ router.get('/program/:id', (req, res, next) => {
 const endpoints = [
     'program',
     'actor',
-    //'director',
-    //'producer',
-    
+    'director',
+    'producer',
+    'streaming_Platform'
 ];
 
 endpoints.forEach(endpoint => {
