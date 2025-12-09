@@ -39,6 +39,26 @@ router.get('/program/:id', (req, res, next) => {
     )
 })
 
+// Example in router.js or similar file:
+router.get('/allPrograms', (req, res, next) => {
+    const url = `http://localhost:${PORT}/api/program`; // Your API endpoint for all programs
+
+    axios.get(url)
+        .then(
+            (resp) => {
+
+                res.render('pages/allPrograms', { 
+                    title: 'All Xmas Programs',
+                    programData: resp.data.rows 
+                });
+            },
+            (error) => {
+                next(error); 
+            }
+        )
+})
+
+// --- API ROUTES ---
 const endpoints = [
     'program',
     'actor',
