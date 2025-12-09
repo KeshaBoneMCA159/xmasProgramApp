@@ -2,11 +2,11 @@
 
 <main class="main" id="main">
     <div>
-        <% data.forEach(program => { %>
+        <% programData.forEach(program => { %>
             <figure>
-                <img src="<%= program.posterURL %>" alt="Xmas movie or show poster: <%= program.title %>">
+                <img src="<%= program.img_url %>" alt="Xmas movie or show image: <%= program.title %>">
                 <figcaption>
-                    <a href="/<%= endpoint %>/<%= program.id %>">
+                    <a href="/program/<%= program.program_id %>">
                         <%= program.title %>
                     </a>
                 </figcaption>

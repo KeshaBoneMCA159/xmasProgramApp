@@ -1,5 +1,5 @@
--- DIRECTOR
-INSERT INTO director (first_name, last_name)
+
+INSERT INTO director (fName, lName)
 VALUES
 ('chuck', 'jones'),
 ('ben', 'washam'),
@@ -28,8 +28,8 @@ VALUES
 ('malcolm', 'd lee'),
 ('jon', 'favreau');
 
--- PRODUCER
-INSERT INTO producer (first_name, last_name)
+
+INSERT INTO producer (fName, lName)
 VALUES
 ('dr.', 'seuss'),
 ('chuck', 'jones'),
@@ -80,8 +80,8 @@ VALUES
 ('sean', 'daniel'),
 ('tom', 'jacobson');
 
--- ACTOR
-INSERT INTO actor (first_name, last_name, img_url)
+
+INSERT INTO actor (fName, lName, img_url)
 VALUES
 ('boris', 'karloff', 'boris_karloff.jpg'),
 ('june', 'foray', 'june_foray.jpg'),
@@ -154,7 +154,7 @@ VALUES
 ('tim', 'allen', 'tim_allen.jpg'),
 ('eric', 'lloyd', 'eric_lloyd.jpg');
 
-INSERT INTO actor (first_name, last_name, img_url)
+INSERT INTO actor (fName, lName, img_url)
 VALUES
 ('judge', 'reinhold', 'judge_reinhold.jpg'),
 ('wendy', 'crewson', 'wendy_crewson.jpg'),
@@ -205,7 +205,7 @@ VALUES
 ('juliette', 'lewis', 'juliette_lewis.jpg'),
 ('johnny', 'galecki', 'johnny_galecki.jpg');
 
--- FORMAT
+
 INSERT INTO format (format)
 VALUES
 ('stop motion animation'),
@@ -213,8 +213,8 @@ VALUES
 ('2D animation'),
 ('computer animation');
 
--- STREAMING PLATFORM
-INSERT INTO streaming_platform (streaming_platform)
+
+INSERT INTO streaming_platform (sp)
 VALUES
 ('apple tv+'),
 ('fubo tv'),
@@ -228,7 +228,7 @@ VALUES
 ('prime video'),
 ('youtube');
 
-INSERT INTO program_to_streaming (program_id, streaming_platform_id)
+INSERT INTO program_to_streaming (program_id, sp_id)
 VALUES
 (1, 1),
 (2, 10),
@@ -256,7 +256,7 @@ VALUES
 (24, 4), 
 (25, 5);
 
---PROGRAM TO ACTOR
+
 INSERT INTO program_to_actor (program_id, actor_id) 
 VALUES
 (1, 1),
@@ -375,7 +375,7 @@ VALUES
 (24, 117),
 (24, 118);
 
---PROGRAM TO PRODUCER
+
 INSERT INTO program_to_producer (program_id, pd_id)
     VALUES
     (1, 1),
@@ -440,7 +440,7 @@ INSERT INTO program_to_producer (program_id, pd_id)
     (25, 47),
     (25, 48);
 
-    --PROGRAM TO DIRECTOR
+  
 INSERT INTO program_to_director (program_id, director_id)   
     VALUES
     (1, 1),
@@ -473,30 +473,30 @@ INSERT INTO program_to_director (program_id, director_id)
     (25, 26);
 
 
---PROGRAMS
+
 INSERT INTO program (title, psnl_rting, runtime, pgr_rting, yr_released, frmt_id, pd_id, img_url, descr)
 VALUES
-('how the grinch stole christmas', 9, '00:26:00', 'G', 1966, 1, 1, 'grinch.jpg', 'On Christmas Eve, the Grinch, a grouchy and solitary creature, hatches a plan to steal Christmas from the cheerful Whos of Whoville, only to discover the true spirit of the holiday.'),
-('a charlie brown christmas', 8, '00:25:00', 'G', 1965, 3, 2, 'charlie_brown.jpg', 'Depressed at the commercialism he sees around him, Charlie Brown tries to find the true meaning of Christmas with help from his friends and a little tree that needs some love.'),
+('how the grinch stole christmas', 9, '00:26:00', 'TV-G', 1966, 1, 1, 'grinch.jpg', 'On Christmas Eve, the Grinch, a grouchy and solitary creature, hatches a plan to steal Christmas from the cheerful Whos of Whoville, only to discover the true spirit of the holiday.'),
+('a charlie brown christmas', 8, '00:25:00', 'TV-G', 1965, 3, 2, 'charlie_brown.jpg', 'Depressed at the commercialism he sees around him, Charlie Brown tries to find the true meaning of Christmas with help from his friends and a little tree that needs some love.'),
 ('a christmas story', 9, '01:34:00', 'PG', 1983, 2, 5, 'christmas_story.jpg', 'In the 1940s, a young boy named Ralphie dreams of receiving a Red Ryder BB gun for Christmas, despite warnings that he''ll shoot his eye out.'),
 ('scrooged', 7, '01:37:00', 'PG-13', 1988, 2, 17, 'scrooged.jpg', 'A cynical and selfish television executive is visited by three ghosts on Christmas Eve who help him rediscover the true meaning of Christmas.'),
-('a year without a santa claus', 7, '00:51:00', 'G', 1974, 1, 4, 'year_without_santa.jpg', 'Santa Claus decides to take a year off from delivering presents, prompting two elves to try to convince him to return to his duties.'),
+('a year without a santa claus', 7, '00:51:00', 'TV-G', 1974, 1, 4, 'year_without_santa.jpg', 'Santa Claus decides to take a year off from delivering presents, prompting two elves to try to convince him to return to his duties.'),
 ('jack frost', 5, '01:39:00', 'PG', 1998, 2, 33, 'jack_frost.jpg', 'A father who dies in a car accident returns as a snowman to reconnect with his son and make up for lost time.'),
-('rudolph the red-nosed reindeer', 8, '00:50:00', 'G', 1964, 1, 2, 'rudolph.jpg', 'Rudolph, a reindeer with a glowing red nose, overcomes ridicule and adversity to become a hero on Christmas Eve.'),
-('santa claus is coming to town', 8, '00:51:00', 'G', 1970, 1, 6, 'santa_claus_coming_to_town.jpg', 'The origin story of Santa Claus, from his childhood as an orphan to his transformation into the beloved gift-giver.'),
+('rudolph the red-nosed reindeer', 8, '00:50:00', 'TV-G', 1964, 1, 2, 'rudolph.jpg', 'Rudolph, a reindeer with a glowing red nose, overcomes ridicule and adversity to become a hero on Christmas Eve.'),
+('santa claus is coming to town', 8, '00:51:00', 'TV-G', 1970, 1, 6, 'santa_claus_coming_to_town.jpg', 'The origin story of Santa Claus, from his childhood as an orphan to his transformation into the beloved gift-giver.'),
 ('miracle on 34th street', 9, '01:36:00', 'G', 1947, 2, 7, 'miracle_on_34th_street.jpg', 'A department store Santa claims to be the real Kris Kringle, leading to a court case to determine his authenticity.'),
 ('the holiday', 8, '02:16:00', 'PG-13', 2006, 2, 15, 'the_holiday.jpg', 'Two women from different countries swap homes for the holidays to escape their relationship woes, only to find new romance in unexpected places.'),
 ('the nightmare before christmas', 9, '01:16:00', 'PG', 1993, 1, 16, 'nightmare_before_christmas.jpg', 'Jack Skellington, king of Halloween Town, stumbles through a portal to Christmas Town and decides to celebrate the holiday with some unexpected and frightening results.'),
-('frosty the snowman', 7, '00:25:00', 'G', 1969, 1, 3, 'frosty.jpg', 'A group of children bring a snowman to life with a magical hat, but they must help him get to the North Pole before he melts.'),
+('frosty the snowman', 7, '00:25:00', 'TV-G', 1969, 1, 3, 'frosty.jpg', 'A group of children bring a snowman to life with a magical hat, but they must help him get to the North Pole before he melts.'),
 ('jingle all the way', 6, '01:29:00', 'PG', 1996, 2, 32, 'jingle_all_the_way.jpg', 'A father frantically searches for a sold-out action figure on Christmas Eve to fulfill a promise to his son.'),
 ('home alone 2: lost in new york', 7, '02:00:00', 'PG', 1992, 2, 25, 'home_alone_2.jpg', 'Kevin McCallister gets separated from his family during their Christmas vacation and ends up in New York City, where he must outwit the same burglars from the first film.'),
-('twilight zone: the night of the meek', 8, '00:25:00', 'G', 1960, 2, 9, 'twilight_zone_night_of_the_meek.jpg', 'A down-and-out department store Santa finds a magical bag that provides him with endless gifts, leading to unexpected consequences.'),
+('twilight zone: the night of the meek', 8, '00:25:00', 'TV-G', 1960, 2, 9, 'twilight_zone_night_of_the_meek.jpg', 'A down-and-out department store Santa finds a magical bag that provides him with endless gifts, leading to unexpected consequences.'),
 ('the santa clause', 8, '01:37:00', 'PG', 1994, 2, 29, 'santa_clause.jpg', 'After accidentally causing Santa Claus to fall from his roof, a man finds himself magically recruited to take his place.'),
 ('elf', 8, '01:37:00', 'PG', 2003, 2, 28, 'elf.jpg', 'After discovering he is actually a human, a man raised as an elf at the North Pole travels to New York City to find his biological father and spread Christmas cheer.'),
-('the great christmas light fight', 7, '01:00:00', 'G', 2013, 2, 40, 'great_christmas_light_fight.jpg', 'Families across America compete to create the most dazzling and elaborate Christmas light displays in this festive competition.'),
-('nailed it: holiday', 6, '00:30:00', 'PG', 2018, 4, 39, 'nailed_it_holiday.jpg', 'Bakers with a track record of epic fails attempt to recreate intricate holiday-themed cakes and confections for a cash prize.'),
-('blown away: holiday', 7, '01:00:00', 'G', 2019, 4, 37, 'blown_away_holiday.jpg', 'Glassblowers create stunning holiday-themed pieces in a series of competitive challenges.'),
-('the british baking show: holidays', 8, '01:00:00', 'G', 2020, 3, 38, 'british_baking_show_holidays.jpg', 'Bakers from the UK compete in festive challenges to be crowned the best holiday baker.'),
+('the great christmas light fight', 7, '01:00:00', 'TV-G', 2013, 2, 40, 'great_christmas_light_fight.jpg', 'Families across America compete to create the most dazzling and elaborate Christmas light displays in this festive competition.'),
+('nailed it: holiday', 6, '00:30:00', 'TV-PG', 2018, 4, 39, 'nailed_it_holiday.jpg', 'Bakers with a track record of epic fails attempt to recreate intricate holiday-themed cakes and confections for a cash prize.'),
+('blown away: holiday', 7, '01:00:00', 'TV-G', 2019, 4, 37, 'blown_away_holiday.jpg', 'Glassblowers create stunning holiday-themed pieces in a series of competitive challenges.'),
+('the british baking show: holidays', 8, '01:00:00', 'TV-G', 2020, 3, 38, 'british_baking_show_holidays.jpg', 'Bakers from the UK compete in festive challenges to be crowned the best holiday baker.'),
 ('the polar express', 8, '01:40:00', 'G', 2004, 4, 22, 'polar_express.jpg', 'On Christmas Eve, a young boy boards a magical train that is headed to the North Pole and embarks on an extraordinary adventure.'),
 ('a diva s christmas carol', 6, '01:30:00', 'PG', 2000, 2, 21, 'divas_christmas_carol.jpg', 'A famous and selfish singer is visited by three spirits on Christmas Eve who help her rediscover the true meaning of the holiday.'),
 ('the best man: holiday', 7, '02:18:00', 'R', 2013, 2, 24, 'best_man_holiday.jpg', 'Old college friends reunite over the Christmas holidays, leading to rekindled romances and unresolved tensions.'),

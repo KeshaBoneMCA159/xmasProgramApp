@@ -49,6 +49,13 @@ ORDER BY p.program_id;`
         )
     },
 
+    findByFormat: (res, formatType) => {
+    const sql = `SELECT * FROM program WHERE format = ?`;
+    con.execute(sql, [formatType], (error, rows) => {
+        queryAction(res, error, rows);
+    });
+},
+
     findById: function(res, id) {
        
         const sql = `SELECT * FROM program WHERE program_id = ?`; 
