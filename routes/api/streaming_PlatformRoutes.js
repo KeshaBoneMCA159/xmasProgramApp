@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const { streaming_PlatformDao: dao } = require('../../daos/dao')
+const { streaming_platformDao: dao } = require('../../daos/dao')
 
 //http://localhost:3005/api/program
 router.get('/', (req, res) => {
