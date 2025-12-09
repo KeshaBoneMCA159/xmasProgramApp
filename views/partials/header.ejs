@@ -3,11 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= title %></title>
+    <title><%=title %></title>
 </head>
 <body>
     <header class="header" id="header">
-        <div class="container">
-            <h1 class="h1-heading display-1 text-center"><%= name %></h1>
-        </div>
+        <h2><%= name %>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/actor">Actor</a>
+                <a href="/director">Director</a>
+                <a href="/producer">Producer</a>
+                <a href="/streaming_platform">Streaming Platform</a>
+            </nav>
+        </h2>
     </header>
+   
