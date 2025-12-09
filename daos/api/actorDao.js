@@ -2,6 +2,7 @@
 const con = require('../../config/dbconfig')
 const { queryAction } = require('../../helpers/queryAction')
 
+
 const actorDao = {
     table: 'actor', 
 
@@ -42,4 +43,4 @@ const actorDao = {
     }
 }
 
-module.exports = actorDao;
+module.exports = actorDao

@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const { albumDao: dao } = require('../../daos/dao')
+const { actorDao: dao } = require('../../daos/dao')
 
 //http://localhost:3005/api/program
 router.get('/', (req, res) => {
@@ -20,7 +20,7 @@ router.get('/:id', (req, res) => {
 
 //http://localhost:3005/api/actor/get_programs/:id sanity check
 router.get('/get_programs/:id', (req, res) => {
-    dao.findProgramsByActorId(res, dao.table, req.params.id)
+    dao.findProgramsByActorId(res, req.params.id)
 })
 
 //http://localhost:3005/api/by-rating/:rating => sanity check
