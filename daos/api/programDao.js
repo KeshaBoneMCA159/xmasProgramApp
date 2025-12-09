@@ -6,7 +6,7 @@ const programDao = {
     // Step 11 create methods specific to the program table
      table: 'program',
     // Step 24 write query methods specifically for the program table
-    findProgramInfo: (res, table)=> {
+    findAllPrograms: (res, table)=> {
 
         const sql = `SELECT p.program_id, p.title, p.runtime, p.yr_released, p.frmt_id, p.pd_id, p.img_url, p.descr, p.sp_id,
 
@@ -48,6 +48,22 @@ ORDER BY p.program_id;`
             }
         )
     },
+    //find all movies
+    findAllMovies: (res) => {
+    // Select where the program rating DOES NOT start with 'TV-%'
+    const sql = `SELECT * FROM program WHERE pgr_rting NOT LIKE 'TV-%'`;
+    con.execute(sql, [], (error, rows) => {
+        queryAction(res, error, rows);
+    });
+},
+
+findAllShows: (res) => {
+    // Select where the program rating DOES start with 'TV-%'
+    const sql = `SELECT * FROM program WHERE pgr_rting LIKE 'TV-%'`;
+    con.execute(sql, [], (error, rows) => {
+        queryAction(res, error, rows);
+    });
+},
 
     findByFormat: (res, formatType) => {
     const sql = `SELECT * FROM program WHERE format = ?`;

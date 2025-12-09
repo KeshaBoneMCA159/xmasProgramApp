@@ -7,8 +7,19 @@ const PORT = process.env.PORT || 3005
 const {programDao: dao } = require('../../daos/dao')
 
 router.get('/', (req, res) => {
-    dao.findProgramInfo(res, dao.table)
+    dao.findAllPrograms(res, dao.table)
 })
+
+// http://localhost:3005/api/program/movies
+router.get('/movies', (req, res) => {
+    dao.findAllMovies(res);
+})
+
+// http://localhost:3005/api/program/shows
+router.get('/shows', (req, res) => {
+    dao.findAllShows(res);
+})
+
 
 //http://localhost:3005/api/program/sort/:sorter
 router.get('/sort/:sorter', (req, res) => {

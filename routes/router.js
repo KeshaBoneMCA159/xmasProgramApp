@@ -58,6 +58,23 @@ router.get('/allPrograms', (req, res, next) => {
         )
 })
 
+router.get('/movies', (req, res, next) => {
+    const url = `http://localhost:${PORT}/api/program/movies`; 
+    axios.get(url).then(resp => {
+        // Renders views/pages/allMovies.ejs
+        res.render('pages/allMovies', { programData: resp.data.rows, title: 'Christmas Movies' });
+    }).catch(next);
+});
+
+router.get('/shows', (req, res, next) => {
+    const url = `http://localhost:${PORT}/api/program/shows`; 
+    axios.get(url).then(resp => {
+         // Renders views/pages/allShows.ejs
+        res.render('pages/allShows', { programData: resp.data.rows, title: 'Christmas TV Shows' });
+    }).catch(next);
+});
+
+
 // --- API ROUTES ---
 const endpoints = [
     'program',
