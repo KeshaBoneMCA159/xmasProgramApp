@@ -4,17 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%=title %></title>
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
     <header class="header" id="header">
         <h2><%= name %>
             <nav>
                 <a href="/">Home</a>
-                <a href="/actor">Actor</a>
-                <a href="/director">Director</a>
-                <a href="/producer">Producer</a>
-                <a href="/streaming_platform">Streaming Platform</a>
-            </nav>
-        </h2>
+                <a href="/allPrograms">All Programs</a>
+
+                <% if (typeof currentPage !== 'undefined' && currentPage === 'allPrograms') { %>
+                    <a href="/movies">All Movies</a>
+                    <a href="/shows">All TV Shows</a>
+                    <% } %>
+                    <a href="/actor">Actors</a>
+                    <a href="/director">Directors</a>
+                    <a href="/producer">Producers</a>
+                    <a href="/stream">Streaming Platforms</a>
+                </nav>
+            </h2>
     </header>
    

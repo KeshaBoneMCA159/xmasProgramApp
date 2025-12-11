@@ -498,7 +498,7 @@ VALUES
 ('blown away: holiday', 7, '01:00:00', 'TV-G', 2019, 4, 37, 'blown_away_holiday.jpg', 'Glassblowers create stunning holiday-themed pieces in a series of competitive challenges.'),
 ('the british baking show: holidays', 8, '01:00:00', 'TV-G', 2020, 3, 38, 'british_baking_show_holidays.jpg', 'Bakers from the UK compete in festive challenges to be crowned the best holiday baker.'),
 ('the polar express', 8, '01:40:00', 'G', 2004, 4, 22, 'polar_express.jpg', 'On Christmas Eve, a young boy boards a magical train that is headed to the North Pole and embarks on an extraordinary adventure.'),
-('a diva s christmas carol', 6, '01:30:00', 'PG', 2000, 2, 21, 'divas_christmas_carol.jpg', 'A famous and selfish singer is visited by three spirits on Christmas Eve who help her rediscover the true meaning of the holiday.'),
+('a diva''s christmas carol', 6, '01:30:00', 'PG', 2000, 2, 21, 'divas_christmas_carol.jpg', 'A famous and selfish singer is visited by three spirits on Christmas Eve who help her rediscover the true meaning of the holiday.'),
 ('the best man: holiday', 7, '02:18:00', 'R', 2013, 2, 24, 'best_man_holiday.jpg', 'Old college friends reunite over the Christmas holidays, leading to rekindled romances and unresolved tensions.'),
 ('national lampoon''s christmas vacation', 8, '01:37:00', 'PG-13', 1989, 2, 19, 'christmas_vacation.jpg', 'The Griswold family''s plans for a perfect Christmas are derailed by unexpected guests and holiday mishaps.');
 

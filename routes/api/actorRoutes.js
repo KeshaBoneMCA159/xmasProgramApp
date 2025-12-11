@@ -3,9 +3,9 @@ const router = express.Router()
 
 const { actorDao: dao } = require('../../daos/dao')
 
-//http://localhost:3005/api/program
+//http://localhost:3005/api/actor => sanity check
 router.get('/', (req, res) => {
-    dao.findAllPrograms(res, dao.table)
+    dao.findAllActors(res, dao.table)
 })
 
 //http://localhost:3005/api/program/sort/:sorter

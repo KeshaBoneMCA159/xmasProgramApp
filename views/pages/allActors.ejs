@@ -1,0 +1,18 @@
+<%- include('../partials/header', { currentPage: 'actors' }) %>
+
+<main class="main" id="main">
+    <div>
+        <% actorData.forEach(actor => { %> 
+            <figure>
+                <!-- Update these to use your actual actor fields (fName, lName, actor_id, etc.) -->
+                <figcaption>
+                    <a href="/actor/<%= actor.actor_id %>">
+                        <%= actor.fName %> <%= actor.lName %>
+                    </a>
+                </figcaption>
+        </figure>
+   <% }) %>
+</div>
+</main>
+
+<%- include('../partials/footer')%>

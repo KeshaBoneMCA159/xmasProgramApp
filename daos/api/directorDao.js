@@ -6,6 +6,17 @@ const { queryAction } = require('../../helpers/queryAction')
 const directorDao = {
     table: 'director', 
 
+    findAllDirectors: (res) => {
+        const sql = `SELECT * FROM director`; 
+
+        con.execute(
+            sql,
+            (error, rows) => {
+                queryAction(res, error, rows)
+            }
+        )
+    },
+
     // finding the *programs* a director is in
     findProgramsByDirectorId: (res, id) => {
         
@@ -15,23 +26,6 @@ const directorDao = {
             FROM program p
             JOIN program_to_director ptd ON p.program_id = ptd.program_id
             WHERE ptd.director_id = ?`;
-
-        con.execute(
-            sql,
-            [id],
-            (error, rows) => {
-                queryAction(res, error, rows)
-            }
-        )
-    },
-
-    countProgramsByDirector: (res, id) => {
-        const sql = `
-             SELECT COUNT(ptd.program_id) AS program_count, d.fName, d.lName
-            FROM director d
-            JOIN program_to_director ptd ON d.director_id = ptd.director_id
-            WHERE d.director_id = ?
-            GROUP BY d.director_id, d.fName, d.lName`;
 
         con.execute(
             sql,

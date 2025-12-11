@@ -6,6 +6,17 @@ const { queryAction } = require('../../helpers/queryAction')
 const actorDao = {
     table: 'actor', 
 
+    findAllActors: (res) => {
+        const sql = `SELECT * FROM actor`; 
+
+        con.execute(
+            sql,
+            (error, rows) => {
+                queryAction(res, error, rows)
+            }
+        )
+    },
+
     // This method is for finding the *programs* an actor is in
     findProgramsByActorId: (res, id) => {
         
@@ -15,23 +26,6 @@ const actorDao = {
             FROM program p
             JOIN program_to_actor pta ON p.Program_id = pta.Program_id
             WHERE pta.actor_id = ?`;
-
-        con.execute(
-            sql,
-            [id],
-            (error, rows) => {
-                queryAction(res, error, rows)
-            }
-        )
-    },
-
-    countProgramsByActor: (res, id) => {
-        const sql = `
-             SELECT COUNT(pta.program_id) AS program_count, a.fName, a.lName
-            FROM actor a
-            JOIN program_to_actor pta ON a.actor_id = pta.actor_id
-            WHERE a.actor_id = ?
-            GROUP BY a.actor_id, a.fName, a.lName`;
 
         con.execute(
             sql,

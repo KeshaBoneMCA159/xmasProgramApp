@@ -6,6 +6,16 @@ const { queryAction } = require('../../helpers/queryAction')
 const streaming_PlatformDao = {
     table: 'streaming_platform', 
 
+    findAllStreaming_Platforms: (res) => {
+        const sql = `SELECT * FROM streaming_platform`; 
+
+        con.execute(
+            sql,
+            (error, rows) => {
+                queryAction(res, error, rows)
+            }
+        )
+    },
     // This method is for finding the *programs* by its streaming platform ID
     findProgramsByStreaming_PlatformId: (res, id) => {
         
@@ -16,24 +26,6 @@ const streaming_PlatformDao = {
             JOIN program_to_streaming pts ON p.program_id = pts.program_id
             WHERE pts.sp_id = ?`;
 
-        con.execute(
-            sql,
-            [id],
-            (error, rows) => {
-                queryAction(res, error, rows)
-            }
-        )
-    },
-
-    countProgramsByStreaming_Platform: (res, id) => {
-        const sql = `
-            SELECT COUNT(pts.program_id) AS program_count,
-            sp.sp AS platform_name,
-            sp.sp_id
-            FROM streaming_platform sp
-            JOIN program_to_streaming pts ON sp.sp_id = pts.sp_id
-            WHERE sp.sp_id = ?
-            GROUP BY sp.sp_id, sp.sp`;
         con.execute(
             sql,
             [id],

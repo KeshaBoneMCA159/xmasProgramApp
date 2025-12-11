@@ -1,0 +1,18 @@
+<%- include('../partials/header', { currentPage: 'producers' }) %>
+
+<main class="main" id="main">
+    <div>
+        <% producerData.forEach(producer => { %> 
+            <figure>
+                <!-- Update these to use your actual actor fields (fName, lName, actor_id, etc.) -->
+                <figcaption>
+                    <a href="/producer/<%= producer.producer_id %>">
+                        <%= producer.fName %> <%= producer.lName %>
+                    </a>
+                </figcaption>
+        </figure>
+   <% }) %>
+</div>
+</main>
+
+<%- include('../partials/footer')%>

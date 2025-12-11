@@ -1,0 +1,18 @@
+<!-- Check this file: views/pages/allStreaming_Platforms.ejs -->
+
+<%- include('../partials/header', { currentPage: 'streaming platforms' }) %>
+
+<main class="main" id="main">
+    <div>
+        <% streamingPlatformData.forEach(platform => { %> 
+            <figure>
+                <figcaption>
+                   
+                    <a href="/stream/<%= platform.sp_id %>">
+                        <%= platform.sp %> 
+                    </a>
+                </figcaption>
+        </figure>
+   <% }) %>
+</div>
+</main>

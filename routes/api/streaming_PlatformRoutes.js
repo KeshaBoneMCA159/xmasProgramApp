@@ -3,9 +3,9 @@ const router = express.Router()
 
 const { streaming_platformDao: dao } = require('../../daos/dao')
 
-//http://localhost:3005/api/program
+//http://localhost:3005/api/streaming_platform => sanity check
 router.get('/', (req, res) => {
-    dao.findProgramInfo(res, dao.table)
+    dao.findAllStreaming_Platforms(res)
 })
 
 //http://localhost:3005/api/program/sort/:sorter
@@ -18,7 +18,7 @@ router.get('/:id', (req, res) => {
     dao.findById(res, req.params.id)
 })
 
-//http://localhost:3005/api/streaming_Platform/get_programs/:id sanity check
+//http://localhost:3005/api/streaming_platform/get_programs/:id sanity check
 router.get('/get_programs/:id', (req, res) => {
     dao.findProgramsByStreaming_PlatformId(res, req.params.id)
 })

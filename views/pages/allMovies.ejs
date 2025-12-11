@@ -1,0 +1,19 @@
+<%- include('../partials/header', { currentPage: 'movies' }) %>
+
+
+<div>
+<main class="main" id="main">
+        <figure>
+        <% programData.forEach(program => { %> 
+                <figcaption>
+                <img src="<%= program.img_url %>" alt="Program image: <%= program.title %>">
+                    <%= program.title %>
+                    <a href="/program/<%= program.program_id %>">
+                    </figcaption>
+                    </a>
+                <% }) %>
+        </figure>
+</main>
+</div>
+<%- include('../partials/footer')%>
+

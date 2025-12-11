@@ -1,0 +1,22 @@
+* { box-sizing: border-box;}
+
+body {
+    margin: 0;
+    padding: 0;
+    /* background-color: { add color here...}; */
+}
+
+.main-heading {
+    /* color:  { add color here... }*/
+}
+
+.image-container {
+  width: 200px; 
+  height: 300px; 
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+}
