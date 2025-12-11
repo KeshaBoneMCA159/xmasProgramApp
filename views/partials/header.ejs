@@ -10,17 +10,17 @@
     <header class="header" id="header">
         <h2><%= name %>
             <nav>
-                <a href="/">Home</a>
-                <a href="/allPrograms">All Programs</a>
+                <a href="/" class="homepage-link">Home</a>
+                <a href="/allPrograms" class="homepage-link">All Programs</a>
 
                 <% if (typeof currentPage !== 'undefined' && currentPage === 'allPrograms') { %>
-                    <a href="/movies">All Movies</a>
-                    <a href="/shows">All TV Shows</a>
+                    <a href="/movies" class="homepage-link">All Movies</a>
+                    <a href="/shows" class="homepage-link">All TV Shows</a>
                     <% } %>
-                    <a href="/actor">Actors</a>
-                    <a href="/director">Directors</a>
-                    <a href="/producer">Producers</a>
-                    <a href="/stream">Streaming Platforms</a>
+                    <a href="/actor" class="homepage-link">Actors</a>
+                    <a href="/director" class="homepage-link">Directors</a>
+                    <a href="/producer" class="homepage-link">Producers</a>
+                    <a href="/stream" class="homepage-link">Streaming Platforms</a>
                 </nav>
             </h2>
     </header>

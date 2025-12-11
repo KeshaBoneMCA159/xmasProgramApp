@@ -3,15 +3,24 @@
 body {
     margin: 0;
     padding: 0;
-    /* background-color: { add color here...}; */
+    color: rgb(157, 161, 157);
+    background-color: rgb(73, 8, 8);
+    font-family: comic;
 }
 
 .main-heading {
-    /* color:  { add color here... }*/
+   color:rgb(157, 161, 157);
+   font-size: 30px;
+    text-align: center;
 }
 
 .image-container {
   width: 300px;  
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .image-container img {
@@ -30,13 +39,22 @@ body {
 
 .homepage-link {
     text-decoration: none;
-    /* color: { add color here... }; */
+    color: rgb(181, 201, 189);
 }
 .homepage-link:hover {
     text-decoration: underline;
+    color: rgb(114, 15, 15);
 } 
 
-.homepage image {
-    width: 50px;
-    height: 50px;
+.homepage-link:active {
+    color: rgb(178, 197, 178);
+}
+
+.homepage-link:visited {
+    color: rgb(140, 161, 148);
+}
+
+.homepage-image {
+   max-width: 100%;
+   height: auto;
 }
