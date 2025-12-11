@@ -1,16 +1,19 @@
-<%- include('../partials/header') %>
+<%- include('../partials/header', { currentPage: 'allPrograms' }) %>
 
 <main class="main" id="main">
-    <div>
+    <!-- Optional: Add a class here if you want to style the overall grid/layout of the list -->
+    <div> 
         <% programData.forEach(program => { %>
-            <figure>
-                <img src="<%= program.img_url %>" alt="Xmas movie or show image: <%= program.title %>">
-                <figcaption>
-                    <a href="/program/<%= program.program_id %>">
-                        <%= program.title %>
-                    </a>
-                </figcaption>
-        </figure>
+            <div class="image-container"> 
+                <figure>
+                    <img src="<%= program.img_url %>" alt="Xmas movie or show image: <%= program.title %>">
+                    <figcaption>
+                        <a href="/program/<%= program.program_id %>">
+                            <%= program.title %>
+                        </a>
+                    </figcaption>
+                </figure>
+            </div> 
    <% }) %>
 </div>
 </main>
