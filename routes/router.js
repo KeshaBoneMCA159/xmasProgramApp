@@ -106,8 +106,8 @@ router.get('/movies', (req, res, next) => {
 });
 
 // All Shows Page 
-router.get('/shows', (req, res, next) => {
-    const url = `http://localhost:${PORT}/api/program/shows`; 
+router.get('/tvshows', (req, res, next) => {
+    const url = `http://localhost:${PORT}/api/program/tvshows`; 
     axios.get(url)
     .then(
         // Success Handler

@@ -16,8 +16,13 @@ router.get('/movies', (req, res) => {
 })
 
 // http://localhost:3005/api/program/shows
-router.get('/shows', (req, res) => {
-    dao.findAllShows(res);
+router.get('/tvshows', (req, res) => {
+    dao.findAllTVShows(res);
+})
+
+// http://localhost:3005/api/program/by-rating/:rating  
+router.get('/by-rating/:rating', (req, res) => {
+    dao.findByRating(res, req.params.rating)
 })
 
 
@@ -26,18 +31,13 @@ router.get('/sort/:sorter', (req, res) => {
     dao.sort(res, dao.table, req.params.sorter)
 })
 
- // http://localhost:3005/api/program/:id => sanity check
+ // http://localhost:3005/api/program/:id => sanity check 
 router.get('/:id', (req, res) => {
     dao.findById(res, req.params.id)
 })
 
-//http://localhost:3005/api/by-rating/:rating => sanity check
-router.get('/by-rating/:rating', (req, res) => {
-    dao.findByRating(res, req.params.rating)
-})
-
 router.post('/create', (req, res)=> {
-    dao.createMovie(req, res, dao.table)
+    dao.createMovie(req, res, dao.table, req.body)
 })
 
 router.patch('/update/:id', (req, res)=> {

@@ -57,7 +57,7 @@ ORDER BY p.program_id;`
     });
 },
 
-findAllShows: (res) => {
+findAllTVShows: (res) => {
     // Select where the program rating DOES start with 'TV-%'
     const sql = `SELECT * FROM program WHERE pgr_rting LIKE 'TV-%'`;
     con.execute(sql, [], (error, rows) => {
