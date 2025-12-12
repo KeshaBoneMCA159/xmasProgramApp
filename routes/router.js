@@ -25,11 +25,13 @@ router.get('/program/:id', (req, res, next) => {
         // Success Handler
         (resp) => {
             const program = resp.data;
-            res.render('pages/program', {
+             console.log("DEBUG: Data object passed to EJS:", program);
+            res.render('pages/single-Program', {
                 title: `Xmas Program: ${program.title}`,
                 name: 'Xmas Program Details',
                 program: program,
-                currentPage: 'programDetail' // Ensures extra links are hidden
+                currentPage: 'programDetail',
+                programData: resp.data
             });
         },
         // Error Handler
@@ -46,8 +48,7 @@ router.get('/allPrograms', (req, res, next) => {
     axios.get(url)
         .then(
             // Success Handler
-            (resp) => {
-                console.log("Data structure check:", resp.data[0]); 
+            (resp) => { 
                 res.render('pages/allPrograms', {
                     title: 'All Xmas Programs',
                     name: 'All Xmas programs',

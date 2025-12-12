@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= programData.title %> - Program Details</title>
+    <!-- Link your CSS file here if needed: -->
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/allPrograms">All Programs</a>
+        </nav>
+    </header>
+
+    <main>
+        <h1><%= program.title %> (<%= program.yr_released %>)</h1>
+        <p><strong>Runtime:</strong> <%= program.runtime %></p>
+        <p><strong>Rating:</strong> <%= program.program_rating %></p>
+        <% if (program.img_url) { %>
+            <img src="<%= program.img_url %>" alt="Image of <%= program.title %>" style="max-width: 300px;">
+        <% } %>
+
+        <div class="description">
+            <h2>Description:</h2>
+            <p><%= program.descr %></p>
+        </div>
+            <section>
+                <h2>Actors:</h2>
+                    <p><%= program.actors %></p>
+            <h2>Directors:</h2>
+            <p><%= program.directors %></p>
+            <h2>Producers:</h2>
+            <p><%= program.producers %></p>
+        </section>
+
+        <p><strong>Streaming Platforms:</strong> <%= program.streaming_platforms %></p>
+        <p><strong>Personal Rating:</strong> <%= program.personal_rating %>/10</p>
+
+    </main>
+
+    <footer>
+        <p>&copy; Merry Xmas Program App</p>
+    </footer>
+
+</body>
+</html>
