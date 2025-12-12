@@ -1,45 +1,48 @@
-const paginationResults =(obj)=> {
+const paginationResults = (obj) => {
+    let results = {};
 
-    // empty object; store results in results
-    let results = {}
+    const query = obj.query ? obj.query : {};
 
-    const query = obj.query ? obj.query : {}
+    // Default to page 1, limit 12 items per page if not specified in query
+    let page = parseInt(query.page) || 1;
+    let limit = parseInt(query.limit) || 12;
 
-    let page = parseInt(query.page) || 1
-    let limit = parseInt(query.limit) || 12
+    const startIdx = (page - 1) * limit;
+    const endIdx = page * limit;
 
-    const startIdx = (page - 1) * limit
-    const endIdx = page * limit
+    results.page = page;
+    results.limit = limit;
+    results.startIdx = startIdx;
+    results.endIdx = endIdx;
 
-    results.page = page
-    results.limit = limit
-    results.startIdx = startIdx
-    results.endIdx = endIdx
+    return results;
+};
 
-    return results
+const buildProgramArr = (allProgramsArr, pagedResultsArr, start, end, page) => {
 
-}
+    let results = {};
 
-const buildJokeArr =(arr, arr2, start, end, page)=> {
-    
-    let results = {}
-
+    // Loop through the main array and push items for the current page
     for (let i = start; i < end; i++) {
-        if (arr[i] != undefined) {
-            arr2 = [...arr2, arr[i]]
+        if (allProgramsArr[i] !== undefined) {
+            pagedResultsArr = [...pagedResultsArr, allProgramsArr[i]];
         }
     }
 
-    const prev = page > 1 ? page - 1 : null
-    const next = end >= arr.length ? null : page + 1
+    // Determine the previous page number (null if on page 1)
+    const prev = page > 1 ? page - 1 : null;
+    
+    // Determine the next page number (null if the end of the data is reached)
+    const next = end >= allProgramsArr.length ? null : page + 1;
 
-    results.arr = arr2
-    results.prev = prev
-    results.next = next
+    results.programs = pagedResultsArr; // Renamed from results.arr to results.programs
+    results.prev = prev;
+    results.next = next;
 
-    return results
-}
+    return results;
+};
+
 module.exports = {
     paginationResults,
-    buildJokeArr
-}
+    buildProgramArr
+};

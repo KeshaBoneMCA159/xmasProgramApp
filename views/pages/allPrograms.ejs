@@ -1,8 +1,16 @@
 <%- include('../partials/header', { currentPage: 'allPrograms' }) %>
 
 <main class="main" id="main">
-    <!-- Optional: Add a class here if you want to style the overall grid/layout of the list -->
     <div> 
+        <div class="pagination-controls">
+            <% if (prev !== null) { %>
+        <a href="/allPrograms?page=<%= prev %>" class="btn btn-primary">Previous</a>
+    <% } %>
+    <span>Page <%= currentPage %></span>
+    <% if (next !== null) { %>
+        <a href="/allPrograms?page=<%= next %>" class="btn btn-primary">Next</a>
+    <% } %>
+    </div>
         <% programData.forEach(program => { %>
             <div class="image-container"> 
                 <figure>

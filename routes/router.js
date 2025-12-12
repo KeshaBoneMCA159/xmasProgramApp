@@ -2,6 +2,8 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
+// Make sure this path is correct:
+const { paginationResults, buildProgramArr } = require('../helpers/pagination');
 const PORT = process.env.PORT || 3005;
 
 router.use(express.static('public'));
@@ -25,7 +27,6 @@ router.get('/program/:id', (req, res, next) => {
         // Success Handler
         (resp) => {
             const program = resp.data;
-             console.log("DEBUG: Data object passed to EJS:", program);
             res.render('pages/single-Program', {
                 title: `Xmas Program: ${program.title}`,
                 name: 'Xmas Program Details',
@@ -45,26 +46,46 @@ router.get('/program/:id', (req, res, next) => {
 router.get('/allPrograms', (req, res, next) => {
     const url = `http://localhost:${PORT}/api/program`;
 
+    const pageData = paginationResults(req); // pageData is an OBJECT {startIdx, endIdx, page}
+
     axios.get(url)
         .then(
-            // Success Handler
             (resp) => { 
-                res.render('pages/allPrograms', {
-                    title: 'All Xmas Programs',
-                    name: 'All Xmas programs',
-                    currentPage: 'allPrograms', 
-                    programData: resp.data
-                });
-            },
-            // Error Handler
-            (error) => {
-                next(error); 
-            }
-        );
+            
+            const allPrograms = resp.data; // allPrograms is the full ARRAY
+
+            let currentPagePrograms = []
+            // paginatedResults is an OBJECT {programs: [...], prev: X, next: Y}
+             const paginatedResults = buildProgramArr(
+                allPrograms, 
+                currentPagePrograms, 
+                pageData.startIdx, 
+                pageData.endIdx, 
+                pageData.page
+            );
+            
+            // We do NOT overwrite resp.data here. 
+            // We use the properties from paginatedResults in the render function:
+
+            res.render('pages/allPrograms', {
+                title: 'All Xmas Programs',
+                name: 'All Xmas programs',
+                currentPage: pageData.page, // Use pageData.page for the current page number
+                programData: paginatedResults.programs, // Pass the ARRAY of programs for the page
+                prev: paginatedResults.prev,         // Pass the prev page number (or null)
+                next: paginatedResults.next          // Pass the next page number (or null)
+            });
+        },
+        // Error Handler
+        (error) => {
+            next(error); 
+        }
+    );
 });
 
 // All Movies Page 
 router.get('/movies', (req, res, next) => {
+// ... (rest of the code is unchanged)
     const url = `http://localhost:${PORT}/api/program/movies`; 
     axios.get(url)
     .then(
