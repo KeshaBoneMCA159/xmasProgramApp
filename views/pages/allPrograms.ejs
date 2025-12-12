@@ -15,7 +15,8 @@
         <% programData.forEach(program => { %>
             <div class="image-container"> 
                 <figure>
-                    <img src="<%= program.img_url %>" alt="Xmas movie or show image: <%= program.title %>">
+                    <img src="/images/<%= program.img_url %>" alt="Xmas movie or show image: <%= program.title %>">
+
                     <figcaption>
                         <a href="/program/<%= program.program_id %>">
                             <%= program.title %>

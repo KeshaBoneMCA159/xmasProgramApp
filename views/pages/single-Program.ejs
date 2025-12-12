@@ -21,7 +21,7 @@
         <p><strong>Runtime:</strong> <%= program.runtime %></p>
         <p><strong>Rating:</strong> <%= program.program_rating %></p>
         <% if (program.img_url) { %>
-            <img src="<%= program.img_url %>" alt="Image of <%= program.title %>" style="max-width: 300px;">
+            <img src="/images/<%= program.img_url %>" alt="Image of <%= program.title %>" style="max-width: 300px;">
         <% } %>
 
         <div class="description">

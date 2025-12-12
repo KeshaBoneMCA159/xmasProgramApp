@@ -17,46 +17,22 @@ router.get('/', (req, res)=> {
     });
 });
 
-// Single Program Display Page
-router.get('/program/:id', (req, res, next) => {
-    const id = req.params.id;
-    const url = `http://localhost:${PORT}/api/program/${id}`;
-
-    axios.get(url)
-    .then(
-        // Success Handler
-        (resp) => {
-            const program = resp.data;
-            res.render('pages/single-Program', {
-                title: `Xmas Program: ${program.title}`,
-                name: 'Xmas Program Details',
-                program: program,
-                currentPage: 'programDetail',
-                programData: resp.data
-            });
-        },
-        // Error Handler
-        (error) => {
-            next(error); 
-        }
-    );
-});
 
 // All Programs Display Page (The ONLY one that shows the All Movies/Shows links)
 router.get('/allPrograms', (req, res, next) => {
     const url = `http://localhost:${PORT}/api/program`;
-
+    
     const pageData = paginationResults(req); // pageData is an OBJECT {startIdx, endIdx, page}
-
+    
     axios.get(url)
-        .then(
-            (resp) => { 
+    .then(
+        (resp) => { 
             
             const allPrograms = resp.data; // allPrograms is the full ARRAY
-
+            
             let currentPagePrograms = []
             // paginatedResults is an OBJECT {programs: [...], prev: X, next: Y}
-             const paginatedResults = buildProgramArr(
+            const paginatedResults = buildProgramArr(
                 allPrograms, 
                 currentPagePrograms, 
                 pageData.startIdx, 
@@ -64,16 +40,13 @@ router.get('/allPrograms', (req, res, next) => {
                 pageData.page
             );
             
-            // We do NOT overwrite resp.data here. 
-            // We use the properties from paginatedResults in the render function:
-
             res.render('pages/allPrograms', {
                 title: 'All Xmas Programs',
                 name: 'All Xmas programs',
                 currentPage: pageData.page, // Use pageData.page for the current page number
-                programData: paginatedResults.programs, // Pass the ARRAY of programs for the page
-                prev: paginatedResults.prev,         // Pass the prev page number (or null)
-                next: paginatedResults.next          // Pass the next page number (or null)
+                programData: paginatedResults.programs, //the ARRAY of programs for the page
+                prev: paginatedResults.prev,         // the prev page number (or null)
+                next: paginatedResults.next          // the next page number (or null)
             });
         },
         // Error Handler
@@ -85,7 +58,7 @@ router.get('/allPrograms', (req, res, next) => {
 
 // All Movies Page 
 router.get('/movies', (req, res, next) => {
-// ... (rest of the code is unchanged)
+    // ... (rest of the code is unchanged)
     const url = `http://localhost:${PORT}/api/program/movies`; 
     axios.get(url)
     .then(
@@ -112,14 +85,15 @@ router.get('/tvshows', (req, res, next) => {
     .then(
         // Success Handler
         (resp) => {
-            res.render('pages/allShows', {
+            console.log("Image URL example:", resp.data[0].img_url);
+            res.render('pages/allTVShows', {
                 title: 'All Xmas TV Shows',
                 name: 'All Xmas TV Shows',
-                currentPage: 'shows', 
+                currentPage: ' TV shows', 
                 programData: resp.data
             });
         },
-       
+        
         (error) => {
             next(error); 
         }
@@ -203,6 +177,30 @@ router.get('/stream', (req, res, next) => {
 });
 
 
+// Single Program Display Page
+router.get('/program/:id', (req, res, next) => {
+    const id = req.params.id;
+    const url = `http://localhost:${PORT}/api/program/${id}`;
+
+    axios.get(url)
+    .then(
+        // Success Handler
+        (resp) => {
+            const program = resp.data;
+            res.render('pages/single-Program', {
+                title: `Xmas Program: ${program.title}`,
+                name: 'Xmas Program Details',
+                program: program,
+                currentPage: 'programDetail',
+                programData: resp.data
+            });
+        },
+        // Error Handler
+        (error) => {
+            next(error); 
+        }
+    );
+});
 // --- API ROUTES (Standard Setup) ---
 
 // API Index
@@ -213,7 +211,7 @@ router.get('/api', (req, res)=> {
         'All Directors': `http://localhost:${PORT}/api/director`,
         'All Producers': `http://localhost:${PORT}/api/producer`,
         'All Movies': `http://localhost:${PORT}/api/program/movies`,
-        'All Shows': `http://localhost:${PORT}/api/program/shows`,
+        'All TV Shows': `http://localhost:${PORT}/api/program/tvshows`,
         'All Streaming Platforms': `http://localhost:${PORT}/api/streaming_platform`
     });
 });
