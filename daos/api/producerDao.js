@@ -1,5 +1,5 @@
 // Step 25 connect to the database
-const con = require('../../config/dbconfig')
+const con = require('../../config/dbconfig.safe')
 const { queryAction } = require('../../helpers/queryAction')
 
 

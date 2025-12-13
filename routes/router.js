@@ -2,7 +2,6 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
-// Make sure this path is correct:
 const { paginationResults, buildProgramArr } = require('../helpers/pagination');
 const PORT = process.env.PORT || 3005;
 
