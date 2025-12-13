@@ -1,5 +1,5 @@
 // Step 8 connect to config database
-const con = require('../../config/dbconfig.safe')
+const con = require('../../config/dbconfig')
 const { queryAction} = require('../../helpers/queryAction')
 
 const daoCommon = {
