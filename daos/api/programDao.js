@@ -1,6 +1,7 @@
 // Step 10 connect to the database
 const con = require('../../config/dbconfig')
 const { queryAction } = require('../../helpers/queryAction')
+const daoCommon = require('../common/daoCommon')
 
 const programDao = {
     // Step 11 create methods specific to the program table
@@ -118,7 +119,15 @@ findAllTVShows: (res) => {
                 queryAction(res, error, rows)
             }
         )
-    }
+    },
+
+    create: (req, res, table, body) => {
+    daoCommon.create(req, res, table, body)
+  },
+
+  update: (req, res, table, body, id) => {
+    daoCommon.update(req, res, table, body, id)
+  }
 }
 
 module.exports = programDao

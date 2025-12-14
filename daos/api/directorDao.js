@@ -1,6 +1,7 @@
 // Step 25 connect to the database
 const con = require('../../config/dbconfig')
 const { queryAction } = require('../../helpers/queryAction')
+const daoCommon = require('../common/daoCommon')
 
 
 const directorDao = {
@@ -34,7 +35,15 @@ const directorDao = {
                 queryAction(res, error, rows)
             }
         )
-    }
+    },
+
+    create: (req, res, table, body) => {
+    daoCommon.create(req, res, table, body)
+  },
+
+  update: (req, res, table, body, id) => {
+    daoCommon.update(req, res, table, body, id)
+  }
 }
 
 module.exports = directorDao

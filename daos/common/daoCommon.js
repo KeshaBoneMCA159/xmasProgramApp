@@ -85,16 +85,15 @@ const daoCommon = {
         )
     },
 
-    update: (req, res, table, updateObj, id)=> {
-        con.execute(
-            `UPDATE ${table} SET ? WHERE ${table}_id = ?;`,
-            [updateObj, id],
-            (error, rows)=> {
-                queryAction(res, error, rows, table) 
-            }
-        )
+    update: (req, res, table, updateObj, id) => {
+  con.query(
+    `UPDATE \`${table}\` SET ? WHERE \`${table}_id\` = ?`,
+    [updateObj, id],
+    (error, rows) => {
+      queryAction(res, error, rows, table)
     }
-
+  )
+},
 }
 
 module.exports = daoCommon // <= the rest of step 8
