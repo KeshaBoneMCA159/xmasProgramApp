@@ -1,31 +1,59 @@
 <%- include('../partials/header', { currentPage: 'allPrograms' }) %>
 
 <main class="main" id="main">
-    <div> 
-        <div class="pagination-controls">
-            <% if (prev !== null) { %>
-        <a href="/allPrograms?page=<%= prev %>" class="btn btn-primary">Previous</a>
-    <% } %>
-    <span>Page <%= currentPage %></span>
-    <% if (next !== null) { %>
-        <a href="/allPrograms?page=<%= next %>" class="btn btn-primary">Next</a>
-    <% } %>
-    </div>
-    <div class="program-grid-container">
-        <% programData.forEach(program => { %>
-            <div class="image-container"> 
-                <figure>
-                    <img src="/images/<%= program.img_url %>" alt="Xmas movie or show image: <%= program.title %>">
 
-                    <figcaption>
-                        <a href="/program/<%= program.program_id %>">
-                            <%= program.title %>
-                        </a>
-                    </figcaption>
-                </figure>
-            </div> 
-   <% }) %>
-</div>
+  <div class="pagination">
+    <% if (prev != null) { %>
+      <a href="/allPrograms?page=<%= prev %>">prev</a>
+    <% } %>
+
+    <% if (currentPage != null) { %>
+      <span>Page <%= currentPage %></span>
+    <% } %>
+
+    <% if (next != null) { %>
+      <a href="/allPrograms?page=<%= next %>">next</a>
+    <% } %>
+  </div>
+
+  <div class="program-grid-container">
+
+    <% for (let i = 0; i < programData.length; i++) { %>
+
+      <%
+        let img = programData[i].img_url
+        let imgSrc = ''
+
+        if (img) {
+          if (img.indexOf('/images/') === 0) {
+            imgSrc = img
+          } else if (img.indexOf('images/') === 0) {
+            imgSrc = '/' + img
+          } else {
+            imgSrc = '/images/' + img
+          }
+        }
+      %>
+
+      <div class="image-container">
+        <figure>
+
+          <% if (img) { %>
+            <img src="<%= imgSrc %>" alt="xmas program image">
+          <% } %>
+
+          <figcaption>
+            <a href="/program/<%= programData[i].program_id %>">
+              <%= programData[i].title %>
+            </a>
+          </figcaption>
+
+        </figure>
+      </div>
+
+    <% } %>
+
+  </div>
 </main>
 
-<%- include('../partials/footer')%>
+<%- include('../partials/footer') %>

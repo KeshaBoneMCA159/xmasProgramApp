@@ -1,50 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= programData.title %> - Program Details</title>
-    <!-- Link your CSS file here if needed: -->
-    <link rel="stylesheet" href="/css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= program.title %> - Program Details</title>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 
-    <header>
-        <nav>
-            <a href="/">Home</a>
-            <a href="/allPrograms">All Programs</a>
-        </nav>
-    </header>
+  <header>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/allPrograms">All Programs</a>
+    </nav>
+  </header>
 
-    <main>
-        <h1><%= program.title %> (<%= program.yr_released %>)</h1>
-        <p><strong>Runtime:</strong> <%= program.runtime %></p>
-        <p><strong>Rating:</strong> <%= program.program_rating %></p>
-        <% if (program.img_url) { %>
-            <img src="/images/<%= program.img_url %>" alt="Image of <%= program.title %>" style="max-width: 300px;">
-        <% } %>
+  <main class="main">
 
-        <div class="description">
-            <h2>Description:</h2>
-            <p><%= program.descr %></p>
-        </div>
-            <section>
-                <h2>Actors:</h2>
-                    <p><%= program.actors %></p>
-            <h2>Directors:</h2>
-            <p><%= program.directors %></p>
-            <h2>Producers:</h2>
-            <p><%= program.producers %></p>
-        </section>
+    <div class="program-card">
 
-        <p><strong>Streaming Platforms:</strong> <%= program.streaming_platforms %></p>
-        <p><strong>Personal Rating:</strong> <%= program.personal_rating %>/10</p>
+      <h1><%= program.title %> (<%= program.yr_released %>)</h1>
 
-    </main>
+      <p><strong>Runtime:</strong> <%= program.runtime %></p>
+      <p><strong>Rating:</strong> <%= program.program_rating %></p>
 
-    <footer>
-        <p>&copy; Merry Xmas Program App</p>
-    </footer>
+      <%
+        let img = program.img_url
+        let imgSrc = ''
+
+        if (img) {
+          if (img.indexOf('/images/') === 0) {
+            imgSrc = img
+          } else if (img.indexOf('images/') === 0) {
+            imgSrc = '/' + img
+          } else {
+            imgSrc = '/images/' + img
+          }
+        }
+      %>
+
+      <% if (imgSrc) { %>
+        <img
+          src="<%= imgSrc %>"
+          alt="Image of <%= program.title %>"
+          class="program-image"
+        >
+      <% } %>
+
+      <div class="description">
+        <h2>Description</h2>
+        <p><%= program.descr %></p>
+      </div>
+
+      <section>
+        <h2>Actors</h2>
+        <p><%= program.actors %></p>
+
+        <h2>Directors</h2>
+        <p><%= program.directors %></p>
+
+        <h2>Producers</h2>
+        <p><%= program.producers %></p>
+      </section>
+
+      <p><strong>Streaming Platforms:</strong> <%= program.streaming_platforms %></p>
+      <p><strong>Personal Rating:</strong> <%= program.personal_rating %>/10</p>
+
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <p class="footer-text">
+      site by Spinach Kesh
+      <a class="site-link" href="https://spinachkesh.com">spinachkesh.com</a>
+    </p>
+  </footer>
 
 </body>
 </html>
