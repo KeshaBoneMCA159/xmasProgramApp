@@ -41,7 +41,7 @@ router.post('/create', (req, res)=> {
 })
 
 router.patch('/update/:id', (req, res)=> {
-    dao.update(req, res, dao.table)
+    dao.update(req, res, dao.table, req.body, req.params.id)
 })
 
 module.exports = router

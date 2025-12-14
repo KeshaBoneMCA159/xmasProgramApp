@@ -76,10 +76,10 @@ const daoCommon = {
     },
 
     create: (req, res, table, insertObj)=> {
-        con.execute(
-            `INSERT INTO ${table} SET ?;`,
-            [insertObj],
-            (error, rows)=> {
+        con.query(
+            `INSERT INTO \`${table}\` SET ?`,
+                insertObj,
+            (error, rows) => {
                 queryAction(res, error, rows, table) 
             }
         )
