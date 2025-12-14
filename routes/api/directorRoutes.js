@@ -29,7 +29,7 @@ router.get('/by-rating/:rating', (req, res) => {
 })
 
 router.post('/create', (req, res)=> {
-    dao.createMovie(req, res, dao.table)
+    dao.create(req, res, dao.table)
 })
 
 router.patch('/update/:id', (req, res)=> {

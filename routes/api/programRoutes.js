@@ -37,7 +37,7 @@ router.get('/:id', (req, res) => {
 })
 
 router.post('/create', (req, res)=> {
-    dao.createMovie(req, res, dao.table, req.body)
+    dao.create(req, res, dao.table, req.body)
 })
 
 router.patch('/update/:id', (req, res)=> {
