@@ -1,14 +1,14 @@
-
+//building out the server
 const express = require('express')
 const server = express()
 const router = require('./routes/router') // Step 4a connect to my router
 const PORT = process.env.PORT || 3005
 
-
+//Install and handling security
 const helmet = require('helmet')
 const cors = require('cors')
 
-// server.use(helmet())
+// configure helmet
 server.use(helmet.contentSecurityPolicy({
     useDefaults: true,
     crossOriginResourcePolicy: false,

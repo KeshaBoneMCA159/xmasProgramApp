@@ -3,40 +3,41 @@ const con = require('../../config/dbconfig')
 const { queryAction } = require('../../helpers/queryAction')
 const daoCommon = require('../common/daoCommon')
 
-
 const actorDao = {
-    table: 'actor', 
+  table: 'actor',
 
-    findAllActors: (res) => {
-        const sql = `SELECT * FROM actor`; 
+  findAllActors: (res) => {
+    const sql = `SELECT * FROM actor`
 
-        con.execute(
-            sql,
-            (error, rows) => {
-                queryAction(res, error, rows)
-            }
-        )
-    },
+    con.execute(sql, (error, rows) => {
+      queryAction(res, error, rows)
+    })
+  },
 
-    // This method is for finding the *programs* an actor is in
-    findProgramsByActorId: (res, id) => {
-        
-        // Use a JOIN query to find all programs for a specific actor ID
-        const sql = `
-            SELECT p.program_id, p.title, p.descr, p.yr_released, p.runtime, p.img_url
-            FROM program p
-            JOIN program_to_actor pta ON p.Program_id = pta.Program_id
-            WHERE pta.actor_id = ?`;
+  findById: (res, id) => {
+    con.execute(
+      `SELECT * FROM \`actor\` WHERE \`actor_id\` = ?;`,
+      [id],
+      (error, rows) => {
+        queryAction(res, error, rows)
+      }
+    )
+  },
 
-        con.execute(
-            sql,
-            [id],
-            (error, rows) => {
-                queryAction(res, error, rows)
-            }
-        )
-    },
-create: (req, res, table, body) => {
+  findProgramsByActorId: (res, id) => {
+    const sql = `
+      SELECT p.program_id, p.title, p.descr, p.yr_released, p.runtime, p.img_url
+      FROM program p
+      JOIN program_to_actor pta ON p.program_id = pta.program_id
+      WHERE pta.actor_id = ?;
+    `
+
+    con.execute(sql, [id], (error, rows) => {
+      queryAction(res, error, rows)
+    })
+  },
+
+  create: (req, res, table, body) => {
     daoCommon.create(req, res, table, body)
   },
 

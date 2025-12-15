@@ -18,6 +18,16 @@ findAllProducers: (res) => {
         )
     },
 
+    findById: (res, id) => {
+        con.execute(
+          `SELECT * FROM \`actor\` WHERE \`actor_id\` = ?;`,
+          [id],
+          (error, rows) => {
+            queryAction(res, error, rows)
+          }
+        )
+      },
+      
     // This method is for finding the *programs* a producer is in
     findProgramsByProducerId: (res, id) => {
         

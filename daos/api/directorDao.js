@@ -18,6 +18,16 @@ const directorDao = {
         )
     },
 
+    findById: (res, id) => {
+    con.execute(
+      `SELECT * FROM \`actor\` WHERE \`actor_id\` = ?;`,
+      [id],
+      (error, rows) => {
+        queryAction(res, error, rows)
+      }
+    )
+  },
+  
     // finding the *programs* a director is in
     findProgramsByDirectorId: (res, id) => {
         

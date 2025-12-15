@@ -3,37 +3,37 @@ const router = express.Router()
 
 const { directorDao: dao } = require('../../daos/dao')
 
-//http://localhost:3005/api/director/ => sanity check
+// http://localhost:3005/api/director
 router.get('/', (req, res) => {
-    dao.findAllDirectors(res, dao.table)
+  dao.findAllDirectors(res, dao.table)
 })
 
-//http://localhost:3005/api/program/sort/:sorter
+// http://localhost:3005/api/director/sort/:sorter
 router.get('/sort/:sorter', (req, res) => {
-    dao.sort(res, dao.table, req.params.sorter)
+  dao.sort(res, dao.table, req.params.sorter)
 })
 
- // http://localhost:3005/api/program/:id => sanity check
-router.get('/:id', (req, res) => {
-    dao.findById(res, req.params.id)
-})
-
-//http://localhost:3005/api/director/get_programs/:id sanity check
+// http://localhost:3005/api/director/get_programs/:id
 router.get('/get_programs/:id', (req, res) => {
-    dao.findProgramsByDirectorId(res, req.params.id)
+  dao.findProgramsByDirectorId(res, req.params.id)
 })
 
-//http://localhost:3005/api/by-rating/:rating => sanity check
+// http://localhost:3005/api/director/by-rating/:rating
 router.get('/by-rating/:rating', (req, res) => {
-    dao.findByRating(res, req.params.rating)
+  dao.findByRating(res, req.params.rating)
 })
 
-router.post('/create', (req, res)=> {
-    dao.create(req, res, dao.table)
+// http://localhost:3005/api/director/:id
+router.get('/:id', (req, res) => {
+  dao.findById(res,  req.params.id)
 })
 
-router.patch('/update/:id', (req, res)=> {
-    dao.update(req, res, dao.table, req.body, req.params.id)
+router.post('/create', (req, res) => {
+  dao.create(req, res, dao.table, req.body)
+})
+
+router.patch('/update/:id', (req, res) => {
+  dao.update(req, res, dao.table, req.body, req.params.id)
 })
 
 module.exports = router

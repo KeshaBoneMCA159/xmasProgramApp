@@ -30,7 +30,7 @@ router.get('/allPrograms', (req, res, next) => {
         // Remove duplicate titles (simple way: arrays + for loop + indexOf)
         let uniquePrograms = []
         let titlesSeen = []
-
+//
         for (let i = 0; i < allPrograms.length; i++) {
           let title = (allPrograms[i].title || '').toLowerCase().trim()
 
@@ -40,10 +40,10 @@ router.get('/allPrograms', (req, res, next) => {
           }
         }
 
-        // Clamp page so it can't go out of range
+        // Pagination calculations
         const totalPages = Math.max(1, Math.ceil(uniquePrograms.length / pageData.limit))
         const safePage = Math.min(Math.max(pageData.page, 1), totalPages)
-
+        // This determines the start and end range of items to display
         const startIdx = (safePage - 1) * pageData.limit
         const endIdx = safePage * pageData.limit
 
@@ -193,7 +193,7 @@ router.get('/stream', (req, res, next) => {
 router.get('/program/:id', (req, res, next) => {
   const id = req.params.id
   const url = `http://localhost:${PORT}/api/program/${id}`
-
+// Fetch program data from API
   axios.get(url)
     .then(
       resp => {
@@ -241,7 +241,7 @@ apiEndpoints.forEach(endpoint => {
 })
 
 // 404 page
-router.use((req, res, next) => {
+router.use((req, res) => {
   res.status(404)
     .render('pages/404', {
       title: '404 Error',
