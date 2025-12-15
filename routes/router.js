@@ -1,4 +1,4 @@
-// Step 5 export router
+// Use this to export my router
 const express = require('express')
 const router = express.Router()
 const axios = require('axios')
@@ -27,7 +27,7 @@ router.get('/allPrograms', (req, res, next) => {
       resp => {
         const allPrograms = resp.data
 
-        // Remove duplicate titles (simple way: arrays + for loop + indexOf)
+        // Any duplicate titles? Use this to remove them (arrays + for loop + indexOf)
         let uniquePrograms = []
         let titlesSeen = []
 //
@@ -240,7 +240,7 @@ apiEndpoints.forEach(endpoint => {
   router.use(`/api/${endpoint}`, require(`./api/${endpoint}Routes`))
 })
 
-// 404 page
+// 404 error page
 router.use((req, res) => {
   res.status(404)
     .render('pages/404', {

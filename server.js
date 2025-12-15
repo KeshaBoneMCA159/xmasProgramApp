@@ -25,7 +25,7 @@ server.use(express.urlencoded({ extended: true}))
 
 server.set('view engine', 'ejs')
 
-server.use('/', router) // Step 4b import router
+server.use('/', router) // Import router
 
 //sanity check
 server.listen(PORT, ()=> console.log(`It's the most wonderful time of the year`))

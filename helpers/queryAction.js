@@ -1,7 +1,8 @@
+// Helper to handle query action responses
 const queryAction =(obj, e, r, t)=> {
-    
-    if (!e) {
-        if (r.length === 1) {
+
+    if (!e) { // if no error
+        if (r.length === 1) { // then rows length is 1
             obj.json(...r)
         } else {
             obj.json(r)

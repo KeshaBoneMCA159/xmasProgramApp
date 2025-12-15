@@ -17,7 +17,7 @@ const paginationResults = (obj) => {
 
     return results
 }
-
+// Helper to build paginated program array
 const buildProgramArr = (allProgramsArr, start, end, page) => {
   const programs = allProgramsArr.slice(start, end)
 
