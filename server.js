@@ -1,7 +1,7 @@
 //building out the server
 const express = require('express')
 const server = express()
-const router = require('./routes/router') // Step 4a connect to my router
+const router = require('./routes/router') // connect to my router
 const PORT = process.env.PORT || 3005
 
 //Install and handling security
