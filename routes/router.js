@@ -1,7 +1,7 @@
 // Use this to export my router
 const express = require('express')
 const router = express.Router()
-const axios = require('axios')
+const axios = require('axios') // handles any fetch calls
 const { paginationResults, buildProgramArr } = require('../helpers/pagination')
 const PORT = process.env.PORT || 3005
 

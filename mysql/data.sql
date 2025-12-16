@@ -1,4 +1,4 @@
-
+--Director Table
 INSERT INTO director (fName, lName)
 VALUES
 ('chuck', 'jones'),

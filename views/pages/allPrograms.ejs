@@ -3,6 +3,7 @@
 <main class="main" id="main">
 
   <div class="pagination">
+    <%# pagination links come from the router (prev/currentPage/next) %>
     <% if (prev != null) { %>
       <a href="/allPrograms?page=<%= prev %>">prev</a>
     <% } %>
@@ -17,13 +18,14 @@
   </div>
 
   <div class="program-grid-container">
-
+  
     <% for (let i = 0; i < programData.length; i++) { %>
-
+<%# NOTE: this block fixed my broken images issue (img_url in the DB wasn't always the same format) %>
+      <%# goal: always build a working /images/... path no matter what was stored (_.jpg, images/_.jpg, /images/_.jpg) %>
       <%
         let img = programData[i].img_url
         let imgSrc = ''
-
+// if we have an img_url value, make it equal imgSrc
         if (img) {
           if (img.indexOf('/images/') === 0) {
             imgSrc = img
@@ -37,7 +39,7 @@
 
       <div class="image-container">
         <figure>
-
+ <%# only render an <img> tag if we actually have an image %>
           <% if (img) { %>
             <img src="<%= imgSrc %>" alt="xmas program image">
           <% } %>

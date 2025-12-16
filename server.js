@@ -1,4 +1,4 @@
-//building out the server
+//start with building out the server
 const express = require('express')
 const server = express()
 const router = require('./routes/router') // connect to my router
